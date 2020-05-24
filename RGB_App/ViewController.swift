@@ -18,30 +18,36 @@ class ViewController: UIViewController {
     @IBOutlet weak var greenLabel: UILabel!
     @IBOutlet weak var blueLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillLayoutSubviews() {
+        rgbViewColor()
     }
 
     @IBAction func sliderRed(_ sender: UISlider) {
         rgbViewColor()
-        redLabel.text = String(roundf (sliderRedOutlet.value * 100) / 100)
+        textChange()
     }
     @IBAction func sliderGreen(_ sender: UISlider) {
         rgbViewColor()
-        greenLabel.text = String(roundf (sliderGreenOutlet.value * 100) / 100)
+        textChange()
     }
     @IBAction func sliderBlue(_ sender: UISlider) {
         rgbViewColor()
-        blueLabel.text = String(roundf (sliderBlueOutlet.value * 100) / 100)
+        textChange()
     }
     
-    func rgbViewColor(){
+    private func rgbViewColor() {
         rgbView.backgroundColor = UIColor(
             red: CGFloat(sliderRedOutlet.value),
             green: CGFloat(sliderGreenOutlet.value),
             blue: CGFloat(sliderBlueOutlet.value),
             alpha: 1.0
         )
+    }
+    
+    private func textChange() {
+        redLabel.text = String(roundf (sliderRedOutlet.value * 100) / 100)
+        greenLabel.text = String(roundf (sliderGreenOutlet.value * 100) / 100)
+        blueLabel.text = String(roundf (sliderBlueOutlet.value * 100) / 100)
     }
 }
 
